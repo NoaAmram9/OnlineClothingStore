@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block title %}WELCOME!{% endblock %}
+
+{% block content %}
+<div class="video-container">
+    <video autoplay muted loop class="background-video">
+        <source src="{{ url_for('static', filename='vidoes/background.mp4') }}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="content">
+        <h2 style="font-family: 'Dancing Script'; font-size: 5em; color: white;">Welcome to BARFOO</h2>
+       
+    </div>
+</div>
+{% endblock %}

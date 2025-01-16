@@ -1,0 +1,314 @@
+/* Add this at the top of your CSS file */
+
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Marcellus&display=swap');
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+    border-radius: 30px;
+    font-family: "Marcellus", sans-serif;
+}
+
+body {
+    background-color: #f8f8f8; /* Light gray background */
+    color: #333; /* Dark gray text */
+    line-height: 1.6;
+}
+
+header {
+    background-color: #fff; /* White background */
+    padding: 20px 0;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    
+}
+
+    header .logo h1 {
+        color: #d0c298; /* Light beige for logo text */
+        font-size: 36px;
+        letter-spacing: 2px;
+        margin-bottom: 10px;
+    }
+
+nav {
+    background-color: transparent; /* No background behind the menu */
+}
+
+    nav ul {
+        list-style: none;
+        padding: 0;
+        text-align: center;
+    }
+
+        nav ul li {
+            display: inline-block;
+            margin: 0 15px;
+        }
+
+            nav ul li a {
+                color: #333; /* Dark gray text */
+                text-decoration: none;
+                padding: 10px 20px;
+                font-size: 18px;
+                transition: background-color 0.3s ease, transform 0.3s ease;
+            }
+
+                nav ul li a:hover {
+                    background-color: #FFEDF1; /* Light PINK on hover */
+                    transform: translateY(-3px);
+                }
+
+main {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+    main h2 {
+        font-size: 32px;
+        margin-bottom: 30px;
+        color: #333;
+    }
+
+footer {
+    background-color: #FFEDF1;
+    /* Soft PINK background */
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+}
+
+    footer p {
+        font-size: 14px;
+    }
+
+/* Table Design */
+.product-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-family: 'Arial', sans-serif;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+    .product-table th, .product-table td {
+        padding: 12px;
+        text-align: left;
+        border: 1px solid #ddd;
+        font-size: 16px;
+    }
+
+    .product-table th {
+        background-color: #333; /* Dark gray background for header */
+        color: white;
+        font-weight: bold;
+    }
+
+    .product-table tr:nth-child(even) {
+        background-color: #f0f0f0; /* Light gray for even rows */
+    }
+
+    .product-table tr:nth-child(odd) {
+        background-color: #fff; /* White for odd rows */
+    }
+
+    /* Hover effect for rows */
+    .product-table tr:hover {
+        background-color: #FFEDF1;
+        /* Light PINK */
+        transform: scale(1.03);
+        transition: all 0.3s ease;
+    }
+
+    /* Styling for product images */
+    .product-table .product-image {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 5px;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    }
+
+/* General table border and frame */
+.product-table {
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+    /* Highlight the first row */
+    .product-table tr:first-child {
+        background-color: #FFB6C1; /* Light pink */
+        color: white;
+        border-radius: 10% / 50%;
+    }
+
+    /* Header styling */
+    .product-table th {
+        background-color: #f8d3d3; /* Soft pink */
+        text-transform: uppercase;
+    }
+
+    /* Enhance the hover effect */
+    .product-table tr:hover td {
+        color: #333;
+        cursor: pointer;
+    }
+
+/* Product Grid Styles */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Responsive grid with cards */
+    gap: 20px;
+    padding: 15px;
+    justify-items: center;
+    border-radius: 10% / 50%;
+}
+
+.product-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .product-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .product-card h3 {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+    .product-card p {
+        margin: 5px 0;
+        color: #666;
+    }
+
+.product-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10% / 50%;
+}
+
+.product-image span {
+    color: #999;
+}
+
+/* Size selection styles */
+.size-options {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    justify-content: center;
+}
+
+    .size-options label {
+        font-size: 16px;
+    }
+
+    .size-options input[type="radio"] {
+        margin-right: 5px;
+    }
+
+.unavailable {
+    color: red;
+    text-decoration: line-through;
+    font-weight: bold;
+}
+
+    .unavailable:hover {
+        cursor: not-allowed;
+    }
+
+/* Button Styles */
+button {
+    padding: 10px 20px;
+    background-color: #FFEDF1;
+    border: none;
+    border-radius: 10% / 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+    button:hover {
+        background-color: #FFB6C1; /* Light pink on hover */
+        border-radius: 10% / 50%;
+    }
+    .users-table {
+        width: 30%;
+        border-collapse: collapse;
+        margin: 20px 0;
+    }
+    
+    .users-table th, .users-table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+    
+    .users-table th {
+        background-color: #f2f2f2;
+        color: #333;
+    }
+    
+    .users-table tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+    
+    .users-table tr:hover {
+        background-color: #FFB6C1;
+    }
+    
+    .users-table .btn {
+        margin: 0 5px;
+    }
+    header .logo {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    
+    header .logo-image {
+        max-width: 100px;
+        height: auto;
+        display: inline-block;
+    }
+    /* Style for the video container */
+    .video-container {
+        position: relative;
+        width: 100%;
+        height: 60vh; /* גובה מלא של המסך */
+        overflow: hidden; /* להסתיר תוכן חורג */
+    }
+    
+    .background-video {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%); /* מרכז את הווידיאו */
+        width: 100vw; /* רוחב מלא של המסך */
+        height: 100vh; /* גובה מלא של המסך */
+        object-fit: cover; /* חתוך את הווידיאו בהתאם למסגרת */
+        z-index: -1; /* שלח את הווידיאו מאחורי התוכן */
+    }
+
+/* Style for the content */
+.video-container .content {
+    position: relative;
+    z-index: 1;
+    color: white; /* Text color to stand out against the video */
+    text-align: center;
+    padding: 20px;
+}
+
+h2, p {
+    margin: 0;
+    padding: 20px;
+}
+    

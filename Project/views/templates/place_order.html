@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+
+{% block title %}הזמנה{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>הזמנת מוצר</h2>
+
+    <!-- Flash messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <div class="flash-messages">
+        {% for category, message in messages %}
+        <div class="alert {{ category }}">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
+
+    <!-- Form to place order -->
+    <form action="{{ url_for('place_order') }}" method="POST">
+        <div class="form-group">
+            <label for="product_id">בחר מוצר</label>
+            <select name="product_id" id="product_id" required>
+                {% for product in products %}
+                <option value="{{ product.id }}">{{ product.name }} - {{ product.price }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="quantity">כמות</label>
+            <input type="number" name="quantity" id="quantity" min="1" required>
+        </div>
+
+        <div class="form-group">
+            <label for="delivery_address">כתובת אספקה</label>
+            <input type="text" name="delivery_address" id="delivery_address" required>
+        </div>
+
+        <div class="form-group">
+            <label for="delivery_date">תאריך אספקה</label>
+            <input type="date" name="delivery_date" id="delivery_date" required>
+        </div>
+
+        <div class="form-group">
+            <button type="submit">הגש הזמנה</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

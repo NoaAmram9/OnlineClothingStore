@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block content %}
+<h2>{{ product.name }}</h2>
+<div class="product-detail">
+    {% if product.image %}
+    <img src="{{ url_for('static', filename='images/' + product.image) }}" alt="{{ product.name }}">
+
+    {% else %}
+    <p>No image available</p>
+    {% endif %}
+    <p><strong>Description:</strong> {{ product.description }}</p>
+    <p><strong>Price:</strong> ${{ product.price }}</p>
+   
+    {% if session.get('is_admin') %}
+   <p><strong>Sizes:</strong> 
+        S: {{ product.sizes.S }}, 
+        M: {{ product.sizes.M }}, 
+        L: {{ product.sizes.L }}, 
+        XL: {{ product.sizes.XL }}
+    </p>
+    {% endif %}
+</div>
+<a href="{{ url_for('product.products') }}">Back to Products</a>
+{% endblock %}

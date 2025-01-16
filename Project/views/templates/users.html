@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}View Users{% endblock %}
+
+{% block content %}
+<h1 class="text-center my-4">All Users</h1>
+
+<div class="container">
+    <table class="users-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ user[0] }}</td>  <!-- ID -->
+                <td>{{ user[1] }}</td>  <!-- Username -->
+                <td>{{ user[2] }}</td>  <!-- Email -->
+                
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<a href="{{ url_for('home') }}" class="btn btn-secondary">Back to Home</a>
+{% endblock %}
