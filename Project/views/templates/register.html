@@ -3,21 +3,38 @@
 {% block title %}Register{% endblock %}
 
 {% block content %}
-<h1>Register</h1>
+<div class="wrapper">
+    <div class="title">Register</div>
+    <form method="POST">
+        <div class="field">
+            <input type="text" id="username" name="username" required>
+            <label for="username">Username</label>
+        </div>
 
-<form method="POST">
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="username" required><br>
+        <div class="field">
+            <input type="email" id="email" name="email" required>
+            <label for="email">Email</label>
+        </div>
 
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required><br>
+        <div class="field">
+            <input type="password" id="password" name="password" required>
+            <label for="password">Password</label>
+        </div>
 
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" required><br>
+        <div class="content">
+            <div class="checkbox">
+                <input type="checkbox" id="terms" name="terms" required>
+                <label for="terms">I agree to the terms and conditions</label>
+            </div>
+        </div>
 
-    <button type="submit">Register</button>
-</form>
+        <div class="field">
+            <input type="submit" value="Register">
+        </div>
+    </form>
 
-<br>
-<a href="/auth/login">Already registered? Login here</a>
+    <div class="content">
+        <a href="/auth/login">Already registered? Login here</a>
+    </div>
+</div>
 {% endblock %}

@@ -1,5 +1,3 @@
-from database_handler import DatabaseHandler
-
 class OrderModel:
     def __init__(self, db_handler):
         self.db_handler = db_handler
@@ -19,17 +17,17 @@ class OrderModel:
         try:
             # Insert the order into the database
             order_query = '''INSERT INTO orders (user_id, product_id, product_name, quantity, total_price, 
-                                delivery_address, delivery_date)
-                                VALUES (?, ?, ?, ?, ?, ?, ?)'''
+                                delivery_address, delivery_date, status)
+                                VALUES (?, ?, ?, ?, ?, ?, ?, ?)'''
+            # Default order status can be "pending" upon creation
             self.db_handler.execute_query(order_query, 
                                           (user_id, product_id, product_name, quantity, total_price, 
-                                           delivery_address, delivery_date))
+                                           delivery_address, delivery_date, "pending"))
             return "Order placed successfully"
         except Exception as e:
             raise Exception(f"Error placing order: {str(e)}")
 
     def get_user_orders(self, user_id):
-        # Get all orders for a specific user
         try:
             query = "SELECT * FROM orders WHERE user_id = ?"
             return self.db_handler.fetch_query(query, (user_id,))
@@ -37,25 +35,23 @@ class OrderModel:
             raise Exception(f"Error fetching user orders: {str(e)}")
 
     def get_all_orders(self):
-        # Query to fetch all orders with related product and user details
         try:
             query = '''SELECT o.id, u.name AS customer_name, p.name AS product_name, o.quantity, 
                               o.total_price, o.delivery_address, o.delivery_date, o.status
                        FROM orders o
                        JOIN products p ON o.product_id = p.id
-                       JOIN users u ON o.user_id = u.id'''  # Assuming users table has the 'name' column
+                       JOIN users u ON o.user_id = u.id'''
             result = self.db_handler.fetch_query(query)
 
-            if not result:  # No results found
+            if not result:
                 return []
 
-            # Convert to list of dictionaries for easier template handling
             orders = []
             for row in result:
                 order = {
                     'id': row[0],
-                    'customer_name': row[1],  # User's name from the 'users' table
-                    'product_name': row[2],    # Product name from the 'products' table
+                    'customer_name': row[1],
+                    'product_name': row[2],
                     'quantity': row[3],
                     'total_price': row[4],
                     'delivery_address': row[5],
@@ -69,8 +65,12 @@ class OrderModel:
             raise Exception(f"Error fetching all orders: {str(e)}")
 
     def update_order_status(self, order_id, new_status):
-        # Update the status of an order
         try:
+            # Validate status before updating (you may define a list of valid statuses)
+            valid_statuses = ["pending", "shipped", "delivered", "cancelled"]
+            if new_status not in valid_statuses:
+                raise ValueError("Invalid status value.")
+
             query = "UPDATE orders SET status = ? WHERE id = ?"
             self.db_handler.execute_query(query, (new_status, order_id))
         except Exception as e:

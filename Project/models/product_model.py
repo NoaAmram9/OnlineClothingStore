@@ -41,33 +41,33 @@ class ProductModel:
             return []
 
     def get_product_details(self, product_id):
-        """Fetches details of a specific product."""
-        try:
-            query = "SELECT * FROM products WHERE id = ?"
-            result = self.db_handler.fetch_query(query, (product_id,))
-            if result:
-                product = result[0]  # Assuming result is a list of tuples
-                product_details = {
-                    'id': product[0],
-                    'name': product[1],
-                    'description': product[2],
-                    'price': product[3],
-                    'image': product[4],
-                    'sizes': {
-                        'S': product[5],
-                        'M': product[6],
-                        'L': product[7],
-                        'XL': product[8]  # Assuming size_xl is at the 8th position
-                    }
+      """Fetches details of a specific product."""
+      try:
+        query = "SELECT * FROM products WHERE id = ?"
+        result = self.db_handler.fetch_query(query, (product_id,))
+        if result:
+            product = result[0]  # Assuming result is a list of tuples
+            product_details = {
+                'id': product[0],
+                'name': product[1],
+                'description': product[2],
+                'price': product[3],
+                'image': product[4],
+                'sizes': {
+                    'S': product[5],
+                    'M': product[6],
+                    'L': product[7],
+                    'XL': product[8]  # Assuming size_xl is at the 8th position
                 }
-                return product_details
-            return None
-        except Exception as e:
-            print(f"Error fetching product details: {e}")
-            return None
-
+            }
+            return product_details
+        return None  # If no product is found
+      except Exception as e:
+        print(f"Error fetching product details: {e}")
+        return None  # In case of an error, return None
+    
     def get_products_by_category(self, category):
-        """Fetches products by category."""
+        """Fetches products by category. (Ensure 'category' field exists in DB)"""
         try:
             query = "SELECT * FROM products WHERE category = ?"
             return self.db_handler.fetch_query(query, (category,))
@@ -86,21 +86,24 @@ class ProductModel:
         
     def delete_product(self, product_id):
         # Get the image path before deleting the product (if exists)
-        conn = self.db_handler.connect()  # Get the connection from db_handler
-        cursor = conn.cursor()  # Create a cursor from the connection
+        try:
+            conn = self.db_handler.connect()  # Get the connection from db_handler
+            cursor = conn.cursor()  # Create a cursor from the connection
 
-        # Fetch the image path from the product
-        query = "SELECT image FROM products WHERE id = ?"
-        cursor.execute(query, (product_id,))  # Execute the query
-        result = cursor.fetchone()
+            # Fetch the image path from the product
+            query = "SELECT image FROM products WHERE id = ?"
+            cursor.execute(query, (product_id,))  # Execute the query
+            result = cursor.fetchone()
 
-        if result:
-            image_path = result[0]  # Assuming the image path is in the first column
-            if image_path and os.path.exists(image_path):
-                os.remove(image_path)  # Delete the image file from the server
+            if result:
+                image_path = result[0]  # Assuming the image path is in the first column
+                if image_path and os.path.exists(image_path):
+                    os.remove(image_path)  # Delete the image file from the server
 
-        # Now delete the product from the database
-        query = "DELETE FROM products WHERE id = ?"
-        cursor.execute(query, (product_id,))  # Run the delete query
-        conn.commit()  # Commit the transaction to save changes
-        conn.close()  # Close the connection
+            # Now delete the product from the database
+            query = "DELETE FROM products WHERE id = ?"
+            cursor.execute(query, (product_id,))  # Run the delete query
+            conn.commit()  # Commit the transaction to save changes
+            conn.close()  # Close the connection
+        except Exception as e:
+            print(f"Error deleting product: {e}")

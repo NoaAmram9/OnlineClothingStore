@@ -3,30 +3,55 @@
 {% block title %}Add New Product{% endblock %}
 
 {% block content %}
-<h2>Add New Product</h2>
-<form action="{{ url_for('product.add_product') }}" method="post" enctype="multipart/form-data">
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name" required><br><br>
-    <label for="description">description:</label>
-    <input type="text" id="description" name="description" required><br><br>
-    <label for="price">Price:</label>
-    <input type="number" id="price" name="price" step="0.01" required><br><br>
+<div class="container my-5">
+  <div class="card shadow-lg">
+    <div class="card-header bg-primary text-white text-center">
+      <h2>Add New Product</h2>
+    </div>
+    <div class="card-body">
+      <form action="{{ url_for('product.add_product') }}" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+        <div class="mb-3">
+          <label for="name" class="form-label">Name:</label>
+          <input type="text" id="name" name="name" class="form-control" placeholder="Enter product name" required>
+        </div>
+        <div class="mb-3">
+          <label for="description" class="form-label">Description:</label>
+          <input type="text" id="description" name="description" class="form-control" placeholder="Enter product description" required>
+        </div>
+        <div class="mb-3">
+          <label for="price" class="form-label">Price:</label>
+          <input type="number" id="price" name="price" class="form-control" step="10" placeholder="Enter price" required>
+        </div>
 
-    <label for="size_s">Size S:</label>
-    <input type="number" id="size_s" name="size_s" min="0" value="0"><br><br>
+        <div class="row g-3">
+          <div class="col-md-3">
+            <label for="size_s" class="form-label">Size S:</label>
+            <input type="number" id="size_s" name="size_s" class="form-control" min="0" value="0">
+          </div>
+          <div class="col-md-3">
+            <label for="size_m" class="form-label">Size M:</label>
+            <input type="number" id="size_m" name="size_m" class="form-control" min="0" value="0">
+          </div>
+          <div class="col-md-3">
+            <label for="size_l" class="form-label">Size L:</label>
+            <input type="number" id="size_l" name="size_l" class="form-control" min="0" value="0">
+          </div>
+          <div class="col-md-3">
+            <label for="size_xl" class="form-label">Size XL:</label>
+            <input type="number" id="size_xl" name="size_xl" class="form-control" min="0" value="0">
+          </div>
+        </div>
 
-    <label for="size_m">Size M:</label>
-    <input type="number" id="size_m" name="size_m" min="0" value="0"><br><br>
+        <div class="mb-3">
+          <label for="image" class="form-label">Product Image:</label>
+          <input type="file" id="image" name="image" class="form-control" accept="image/*">
+        </div>
 
-    <label for="size_l">Size L:</label>
-    <input type="number" id="size_l" name="size_l" min="0" value="0"><br><br>
-
-    <label for="size_xl">Size XL:</label>
-    <input type="number" id="size_xl" name="size_xl" min="0" value="0"><br><br>
-
-    <label for="image">Product Image:</label>
-    <input type="file" id="image" name="image" accept="image/*"><br><br>
-
-    <button type="submit">Add Product</button>
-</form>
+        <div class="text-center">
+          <button type="submit" class="btn btn-success w-100">Add Product</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
 {% endblock %}

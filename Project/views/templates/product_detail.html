@@ -3,25 +3,30 @@
 {% block title %}{{ product.name }}{% endblock %}
 
 {% block content %}
-<h2>{{ product.name }}</h2>
-<div class="product-detail">
-    {% if product.image %}
-    <img src="{{ url_for('static', filename='images/' + product.image) }}" alt="{{ product.name }}">
 
+<div class="wrapper">
+  <div class="product-img">
+    {% if product.image %}
+    <img src="{{ url_for('static', filename='images/' + product.image) }}" alt="{{ product.name }}" height="420" width="327">
     {% else %}
     <p>No image available</p>
     {% endif %}
-    <p><strong>Description:</strong> {{ product.description }}</p>
-    <p><strong>Price:</strong> ${{ product.price }}</p>
-   
-    {% if session.get('is_admin') %}
-   <p><strong>Sizes:</strong> 
-        S: {{ product.sizes.S }}, 
-        M: {{ product.sizes.M }}, 
-        L: {{ product.sizes.L }}, 
-        XL: {{ product.sizes.XL }}
-    </p>
-    {% endif %}
+  </div>
+  <div class="product-info">
+    <div class="product-text">
+      <h1>{{ product.name }}</h1>
+      <h2>{{ product.brand or "Brand Unknown" }}</h2>
+      <p>{{ product.description }}</p>
+    </div>
+    <div class="product-price-btn">
+      <p><span>${{ product.price }}</span></p>
+      <form action="{{ url_for('cart.add_to_cart') }}" method="POST">
+        <input type="hidden" name="product_id" value="{{ product.id }}">
+        <input type="hidden" name="product_name" value="{{ product.name }}">
+        <input type="hidden" name="product_price" value="{{ product.price }}">
+        <button type="submit">Add to Cart</button>
+      </form>
+    </div>
+  </div>
 </div>
-<a href="{{ url_for('product.products') }}">Back to Products</a>
 {% endblock %}
