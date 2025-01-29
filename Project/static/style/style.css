@@ -378,7 +378,7 @@ form .field input:focus ~ label,
 form .field input:valid ~ label{
   top: 0%;
   font-size: 13px;
-  color: #4158d0;
+  color: #f2b9ff;
   background: #fff;
   transform: translateY(-50%);
 }
@@ -418,7 +418,7 @@ form .field input[type="submit"]{
     font-family: 'Roboto', sans-serif; /* בחירת משפחת גופנים */
     font-weight: 700; /* גופן מודגש */
     color: #ffffff; /* צבע לבן */
-    background: linear-gradient(90deg, #7df0ff77, #1bb9e596); /* גרדיאנט כחול */
+    background: linear-gradient(90deg, #ffd9f377, #df839f96); /* גרדיאנט כחול */
     text-align: center; /* מיקום מרכזי של הכותרת */
     padding: 5x; /* ריווח פנימי */
     border-top-left-radius: 12px; /* התאמה לפינות הכרטיס */
@@ -493,12 +493,11 @@ form .field input[type="submit"]{
   
 
 
-  /*//////מידע על פריט//////*/
   body {
     background-color: #faf8f7;
   }
   
-  .wrapper {
+  /* .wrapper {
     height: 420px;
     width: 654px;
     margin: 50px auto;
@@ -507,7 +506,7 @@ form .field input[type="submit"]{
     -moz-box-shadow: 0px 14px 32px 0px rgba(0, 0, 0, 0.15);
     box-shadow: 0px 14px 32px 0px rgba(0, 0, 0, 0.15);
     display: flex;
-  }
+  } */
   
   .product-img {
     flex: 1;

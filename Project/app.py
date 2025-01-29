@@ -5,9 +5,14 @@ from controllers.order_controller import order_bp
 from controllers.auth_controller import auth_bp
 from controllers.product_controller import create_product_controller
 from controllers.cart_controller import create_cart_controller  # Import the cart controller
-
+from flask_session import Session
 # Initialize the Flask app
 app = Flask(__name__, template_folder='views/templates', static_url_path='/static', static_folder='static')
+
+
+app.config['SESSION_TYPE'] = 'filesystem'
+app.config['SESSION_PERMANENT'] = True
+Session(app)  # Initialize Flask-Session
 
 # Configurations
 app.secret_key = 'your_secret_key'  # Secret key for session management
