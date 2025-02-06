@@ -1,6 +1,7 @@
 # Online Clothing Store
 
 This project is a Flask-based web application for managing an online clothing store. It includes functionality for user authentication, product management, order placement, and cart management.
+Visual details about the site and its use can be found on the WIKI.
 
 ---
 
