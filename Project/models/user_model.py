@@ -1,10 +1,10 @@
 import pyodbc
 from werkzeug.security import generate_password_hash, check_password_hash
-from database_handler import DatabaseHandler  # יש לוודא ש-DatabaseHandler מותאם לשימוש ב-ODBC
+from database_handler import DatabaseHandler  
 
 class UserModel:
     def __init__(self, db_handler=None):
-        # חיבור למסד נתונים דרך ODBC
+ 
         self.db_handler = db_handler if db_handler else DatabaseHandler()
 
     def register_user(self, username, email, password):

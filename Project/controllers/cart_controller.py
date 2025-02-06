@@ -1,13 +1,13 @@
 from flask import Blueprint, render_template, request, redirect, flash, session, url_for
 from models.product_model import ProductModel
 import logging
-
+# Set up logging
 logging.basicConfig(level=logging.DEBUG)
 cart_bp = Blueprint('cart', __name__)
-
+# Create a Flask Blueprint for cart-related routes
 def create_cart_controller(db_handler):
     """Creates cart-related routes for the app."""
-
+#add to cart route
     @cart_bp.route('/add_to_cart', methods=['POST'])
     def add_to_cart():
         """Route for adding a product to the cart."""
@@ -92,7 +92,7 @@ def create_cart_controller(db_handler):
             logging.error(f"Error removing product from cart: {e}")
             flash(f"Error removing product from cart: {e}", "danger")
             return redirect(url_for('cart.view_cart'))
-
+#checkout route
     @cart_bp.route('/checkout')
     def checkout():
         """Route for proceeding to checkout."""

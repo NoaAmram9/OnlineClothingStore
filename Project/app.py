@@ -19,6 +19,7 @@ app.secret_key = 'your_secret_key'  # Secret key for session management
 app.config['SESSION_TYPE'] = 'filesystem'
 
 # Initialize the DatabaseHandler with Access database
+# Change the path to the database file as needed
 db_handler = DatabaseHandler(db_path='C:/Users/noaam/Desktop/ASP/ClothingStroreNew/OnlineClothingStore/project/database.accdb')
 db_handler.init_db()       # Initialize the database and create tables
 db_handler.create_admin()  # Create the default admin user
