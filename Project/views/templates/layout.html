@@ -27,7 +27,9 @@
                 {% if session.get('user') %}
                 <!-- Greeting the User -->
                 <li><span style="color: red;">Hello, {{ session['user'] }}!</span></li>
-                        
+                                      
+ <!-- Products Link  -->
+ <li><a href="{{ url_for('product.products') }}">Products</a></li>
                 <!-- Logout Link -->
                     <li><a href="{{ url_for('auth.logout') }}">Log out</a></li>
                     
@@ -55,8 +57,8 @@
                     <li><a href="{{ url_for('auth.login') }}">Login</a></li>
                 {% endif %}
 
-                <!-- Products Link (Visible to Everyone) -->
-                <li><a href="{{ url_for('product.products') }}">Products</a></li>
+  
+               
             </ul>
         </nav>
     </header>
